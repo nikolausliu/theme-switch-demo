@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="light-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主题切换</title>
+  <style>
+    .theme-light {
+      --text-primary: #333;
+      --background-primary: #fff;
+    }
+    .theme-dark {
+      --text-primary: #fff;
+      --background-primary: #333;
+    }
+    @media (prefers-color-scheme: light) {
+      .theme-auto {
+        --text-primary: #333;
+        --background-primary: #fff;
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      .theme-auto {
+        --text-primary: #fff;
+        --background-primary: #333;
+      }
+    }
+
+    body {
+      background-color: var(--background-primary);
+    }
+    h1 {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <select name="select" id="select">
+    <option value="0">🌞🌙跟随系统</option>
+    <option value="1">🌞浅色</option>
+    <option value="2">🌙深色</option>
+  </select>
+  <h1>Hello World</h1>
+
+  <script>
+    const select = document.getElementById('select')
+    const root = document.documentElement
+    select.addEventListener('change', (e) => {
+      switch (e.target.value) {
+        case '0':
+          root.className = 'theme-auto'
+          break
+        case '1':
+          root.className = 'theme-light'
+          break
+        case '2':
+          root.className = 'theme-dark'
+          break
+      }
+    })
+  </script>
+</body>
+</html>
